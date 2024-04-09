@@ -11,6 +11,11 @@ config :crew,
   ecto_repos: [Crew.Repo],
   generators: [timestamp_type: :utc_datetime]
 
+config :crew, ash_apis: [Crew.Usage.Api]
+
+config :ash,
+  use_all_identities_in_manage_relationship?: false
+
 # Configures the endpoint
 config :crew, CrewWeb.Endpoint,
   url: [host: "localhost"],
@@ -35,8 +40,7 @@ config :crew, Crew.Mailer, adapter: Swoosh.Adapters.Local
 config :esbuild,
   version: "0.17.11",
   crew: [
-    args:
-      ~w(js/app.js --bundle --target=es2017 --outdir=../priv/static/assets --external:/fonts/* --external:/images/*),
+    args: ~w(js/app.js --bundle --target=es2017 --outdir=../priv/static/assets --external:/fonts/* --external:/images/*),
     cd: Path.expand("../assets", __DIR__),
     env: %{"NODE_PATH" => Path.expand("../deps", __DIR__)}
   ]

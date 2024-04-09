@@ -35,3 +35,4 @@ crew-*.tar
 npm-debug.log
 /assets/node_modules/
 
+.lexical
