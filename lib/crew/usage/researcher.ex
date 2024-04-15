@@ -12,5 +12,6 @@ defmodule Crew.Usage.Researcher do
 
   tools :researcher do
     tool(:do_browse_web, after: & &1)
+    tool(:do_calculate_arithmetic, after: & &1)
   end
 end

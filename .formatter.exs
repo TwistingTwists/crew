@@ -9,7 +9,7 @@
     :ecto,
     :phoenix
   ],
-  line_length: 130,
+  line_length: 120,
   # :typedstruct],
   subdirectories: ["priv/*/migrations"],
   plugins: [Phoenix.LiveView.HTMLFormatter],
