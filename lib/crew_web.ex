@@ -86,6 +86,7 @@ defmodule CrewWeb do
       # Core UI components and translation
       import CrewWeb.CoreComponents
       import CrewWeb.Gettext
+      import LiveSvelte
 
       # Shortcut for generating JS commands
       alias Phoenix.LiveView.JS

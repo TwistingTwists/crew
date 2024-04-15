@@ -18,6 +18,8 @@ defmodule CrewWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :home
+    live "/svelte", SvelteLive
+    live "/ex3", LiveExample3
   end
 
   # Other scopes may use custom stacks.

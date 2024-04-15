@@ -41,7 +41,7 @@ defmodule Crew.MixProject do
       {:phoenix_live_view, "~> 0.20.2"},
       {:floki, ">= 0.30.0", only: :test},
       {:phoenix_live_dashboard, "~> 0.8.3"},
-      {:esbuild, "~> 0.8", runtime: Mix.env() == :dev},
+      # {:esbuild, "~> 0.8", runtime: Mix.env() == :dev},
       {:tailwind, "~> 0.2", runtime: Mix.env() == :dev},
       {:heroicons, github: "tailwindlabs/heroicons", tag: "v2.1.1", sparse: "optimized", app: false, compile: false, depth: 1},
       {:swoosh, "~> 1.5"},
@@ -54,7 +54,10 @@ defmodule Crew.MixProject do
       {:bandit, "~> 1.2"},
       {:spark, "~> 1.1"},
       {:ash, "~> 2.21"},
-      {:ash_jason, "~> 0.3.1"}
+      {:ash_jason, "~> 0.3.1"},
+      # ui stuff
+      {:live_svelte, "~> 0.13.1"}
+
       # {:ash_postgres, "~> 1.3.6"},
     ]
   end
@@ -71,11 +74,19 @@ defmodule Crew.MixProject do
       "ecto.setup": ["ecto.create", "ecto.migrate", "run priv/repo/seeds.exs"],
       "ecto.reset": ["ecto.drop", "ecto.setup"],
       test: ["ecto.create --quiet", "ecto.migrate --quiet", "test"],
-      "assets.setup": ["tailwind.install --if-missing", "esbuild.install --if-missing"],
-      "assets.build": ["tailwind crew", "esbuild crew"],
+      "assets.setup": [
+        "tailwind.install --if-missing",
+        # "esbuild.install --if-missing",
+        "cmd --cd assets npm install"
+      ],
+      "assets.build": [
+        "tailwind crew"
+        # "esbuild crew"
+      ],
+      "assets.deploy": ["tailwind default --minify", "cmd --cd assets node build.js --deploy", "phx.digest"],
       "assets.deploy": [
         "tailwind crew --minify",
-        "esbuild crew --minify",
+        # "esbuild crew --minify",
         "phx.digest"
       ]
     ]

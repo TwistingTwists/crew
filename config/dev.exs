@@ -25,7 +25,8 @@ config :crew, CrewWeb.Endpoint,
   debug_errors: true,
   secret_key_base: "kx6h9XUC++I8YKuiHZagZDV19XVOZxOHHAWJliSjgFt9UhfvtbClqPyR1xf3tpPj",
   watchers: [
-    esbuild: {Esbuild, :install_and_run, [:crew, ~w(--sourcemap=inline --watch)]},
+    node: ["build.js", "--watch", cd: Path.expand("../assets", __DIR__)],
+    # esbuild: {Esbuild, :install_and_run, [:crew, ~w(--sourcemap=inline --watch)]},
     tailwind: {Tailwind, :install_and_run, [:crew, ~w(--watch)]}
   ]
 
